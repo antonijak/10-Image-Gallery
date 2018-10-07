@@ -1,78 +1,133 @@
-*{
+* {
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 main {
-  width: 80%;
+  width: 95%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   border: 1px solid black;
   padding: 1rem;
   position: relative;
+  border-radius: 10px;
 }
 
-img {
+.picture {
   width: 15rem;
-  height: 25rem;
+  height: 20rem;
   object-fit: cover;
-  margin: 1rem 0;
+  border-radius: 10px;
+}
+
+.picture-container {
+  height: 20rem;
+  margin: .5rem .5rem;
+  border-radius: 10px;
+}
+
+.picture-container::after {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #000 150%);
+  margin-top: -3.2rem;
+  height: 3rem;
+  width: 100%;
+  content: '';
+  color: #4f4e4e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#full-name {
+  color: white;
+  width: 15rem;
+  margin-top: -2rem;
+  z-index: 2;
+  position: absolute;
+  text-align: center;
+
 }
 
 #modal {
   display: none;
   position: fixed;
   z-index: 4;
-  padding: 1rem;
   left: 0;
   top: 0;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   overflow: auto;
   background-color: rgb(62, 61, 61, .9);
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+
 }
 
 #details {
-  width: 90%;
-  height: 90%;
-  margin: auto;
+  background-color: rgb(255, 255, 255, .9);
+  width: 80%;
+  height: 100%;
+  margin: 0 10%;
   display: flex;
   flex-wrap: wrap;
+  padding: 2rem;
+  overflow: unset;
+  color: black;
+  justify-content: center;
+  align-items: center;
 }
 
 .detail {
+
   margin: 0 auto 1rem;
   width: 100%;
   /* border: 1px solid black; */
-  text-align: center;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   font-size: 1rem;
+  line-height: 1.5rem;
 }
 
-#fullName{
+.detail span {
+  text-align: left;
+  width: 60%;
+}
+
+
+
+#big-picture {
+  width: 35%;
+  height: 80%;
+  object-fit: cover;
+}
+
+
+#fullName {
   font-size: 2rem;
+  width: 100%;
 }
 
 #titles {
   color: gray;
+  width: 30%;
+
 }
 
-#title, #nationality{
-  width: 49%;
-}
-
-#title {
-  padding-left: 30%;
-}
-
-#nationality {
-  padding-right: 30%;
+#just-text {
+  width: 65%;
+  padding: 1rem;
+  height: 80%;
 }
 
 
+#next {
+  width: 20%;
+  margin: 1rem 40% 0;
 
+  height: 2rem;
+}
