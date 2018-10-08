@@ -11,6 +11,7 @@ function displayPicture() {
       let details = document.createElement('div');
       let noPic = document.createElement('div');
       let nextButton = document.createElement('button');
+      let backButton = document.createElement('button');
       let bigPicture = document.createElement('img');
       let name = document.createElement('div');
       let fullName = document.createElement('div');
@@ -25,11 +26,13 @@ function displayPicture() {
       details.appendChild(name);
       details.appendChild(bigPicture)
       details.appendChild(noPic)
+      details.appendChild(backButton);
       details.appendChild(nextButton);
       pictureContainer.className = 'picture-container';
       picture.className = 'picture';
       name.className = 'detail';
       nextButton.id = i;
+      backButton.id = i;
       nextButton.className = 'nextButton';
       fullName.id = 'full-name';
       modal.className = 'modal';
@@ -95,6 +98,22 @@ function displayPicture() {
             nextParsonModal = document.getElementById(buttonIdString);
           }
           nextParsonModal.style.display = 'block';
+        })
+
+       backButton.addEventListener('click', (e) => {
+          let buttonId1 = parseInt(e.target.getAttribute('id')) - 1;
+          let buttonIdString1 = buttonId1.toString();
+          let nextParsonModal1 = document.getElementById(buttonIdString1);
+
+          while (nextParsonModal1 === null) {
+            buttonId1 = buttonId1 - 1;
+            if (buttonId1 < 0) {
+              buttonId1 = photosInfo.length;
+            } 
+            buttonIdString1 = buttonId1.toString();
+            nextParsonModal1 = document.getElementById(buttonIdString1);
+          }
+          nextParsonModal1.style.display = 'block';
         })
 
         iterator++
