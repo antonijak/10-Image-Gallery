@@ -3,46 +3,48 @@ let main = document.querySelector('main');
 
 function displayPicture() {
   for (i = 0; i < photosInfo.length; i++) {
-    //pictureContainer.appendChild(picture);
 
     if (photosInfo[i].src) {
+
       let picture = document.createElement('img');
       let modal = document.createElement('div');
       let details = document.createElement('div');
       let noPic = document.createElement('div');
-      let next = document.createElement('button');
+      let nextButton = document.createElement('button');
       let bigPicture = document.createElement('img');
       let name = document.createElement('div');
       let fullName = document.createElement('div');
       let pictureContainer = document.createElement('div');
-      let pictureStyle = document.createElement('div');
+      let titles = ['', '', 'Title: ', 'Nationality: ', '', '', 'Skills: ', 'Why software development: ', 'Long term vision:', 'What motivates me: ', 'Favorite quote: ', 'Joined on: '];
+      let iterator = 0;
       document.body.appendChild(modal);
       main.appendChild(pictureContainer);
       pictureContainer.appendChild(picture);
       pictureContainer.appendChild(fullName);
-      pictureContainer.className = 'picture-container';
-      fullName.id = 'full-name'
       modal.appendChild(details);
-      fullName.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName
-      close.id = 'close';
-      next.id = 'next';
-      picture.setAttribute('src', './images/' + photosInfo[i].src);
-      picture.setAttribute('alt', photosInfo[i].alt)
-      picture.id = i;
-      picture.className = 'picture';
-      modal.id = 'modal';
-      details.id = 'details'
-      bigPicture.id = 'big-picture'
-
       details.appendChild(name);
       details.appendChild(bigPicture)
       details.appendChild(noPic)
-      name.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
+      details.appendChild(nextButton);
+      pictureContainer.className = 'picture-container';
+      
+      picture.className = 'picture';
       name.className = 'detail';
+      nextButton.id = i;
+      fullName.id = 'full-name';
+
+      modal.className = 'modal';
+      modal.id= i;
+      details.id = 'details';
+      bigPicture.id = 'big-picture';
       name.id = 'fullName';
-      noPic.id = 'just-text'
-      let titles = ['', '', 'Title: ', 'Nationality: ', '', '', 'Skills: ', 'Why software development: ', 'Long term vision:', 'What motivates me: ', 'Favorite quote: ', 'Joined on: '];
-      let iterator = 0;
+      noPic.id = 'just-text';
+      picture.setAttribute('src', './images/' + photosInfo[i].src);
+      picture.setAttribute('alt', photosInfo[i].alt)
+      fullName.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
+      name.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
+      nextButton.textContent = 'Next';
+
       for (let key in photosInfo[i]) {
 
         if (photosInfo[i][key] && photosInfo[i][key] !== ['']) {
@@ -80,10 +82,20 @@ function displayPicture() {
           modal.style.display = 'none'
         })
 
+
+        nextButton.addEventListener('click', (e) => {
+          var buttonId = parseInt(e.target.getAttribute('id')) + 1;
+          let buttonIdString  = buttonId.toString();
+          var nextParsonModal = document.getElementById(buttonIdString);
+          nextParsonModal.style.display = 'block';
+        })
+        
+
         iterator++
       }
-      details.appendChild(next);
+     
     }
   }
 }
 displayPicture();
+
