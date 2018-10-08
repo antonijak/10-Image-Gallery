@@ -42,11 +42,11 @@ const photosInfo = [
     joinedOn: '01/08/2018'
   },
   {
-    firstName: 'HyeSoo ',
+    firstName: 'Hyesoo ',
     lastName: 'Park',
     title: 'trainee',
     nationality: 'Korean',
-    src: 'hyeSoo.jpg',
+    src: 'hyesoo.jpg',
     alt: 'hyeSoo photo',
     skills: ['JavaScript', 'CSS', 'HTML5'],
     whySofterDeveloper: 'It is amazing that I can build something useful and helpful for people',
