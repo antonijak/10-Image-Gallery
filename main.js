@@ -27,15 +27,13 @@ function displayPicture() {
       details.appendChild(noPic)
       details.appendChild(nextButton);
       pictureContainer.className = 'picture-container';
-      
       picture.className = 'picture';
       name.className = 'detail';
       nextButton.id = i;
       nextButton.className = 'nextButton';
       fullName.id = 'full-name';
-
       modal.className = 'modal';
-      modal.id= i;
+      modal.id = i;
       details.id = 'details';
       bigPicture.id = 'big-picture';
       name.id = 'fullName';
@@ -71,7 +69,6 @@ function displayPicture() {
               content.textContent = photosInfo[i][key];
             }
           }
-
         }
 
         pictureContainer.addEventListener('click', function () {
@@ -83,20 +80,27 @@ function displayPicture() {
           modal.style.display = 'none'
         })
 
-
         nextButton.addEventListener('click', (e) => {
           var buttonId = parseInt(e.target.getAttribute('id')) + 1;
-          let buttonIdString  = buttonId.toString();
+          let buttonIdString = buttonId.toString();
           var nextParsonModal = document.getElementById(buttonIdString);
+
+          while (nextParsonModal === null) {
+            buttonId++;
+
+            if (buttonId > photosInfo.length) {
+              buttonId = 0;
+            }
+            buttonIdString = buttonId.toString();
+            nextParsonModal = document.getElementById(buttonIdString);
+          }
           nextParsonModal.style.display = 'block';
         })
-        
 
         iterator++
       }
-     
+
     }
   }
 }
 displayPicture();
-
