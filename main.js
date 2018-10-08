@@ -29,6 +29,7 @@ function displayPicture() {
       picture.className = 'picture';
       name.className = 'detail';
       nextButton.id = i;
+      nextButton.className = 'nextButton'
       fullName.id = 'full-name';
 
       modal.className = 'modal';
