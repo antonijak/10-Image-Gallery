@@ -136,7 +136,7 @@ main {
 }
 
 
-.nextButton {
+#next {
   width: 8rem;
   height: 2rem;
   border-radius: 10px;
