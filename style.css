@@ -90,8 +90,7 @@ main {
   padding: 2rem;
   overflow: unset;
   color: black;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
 }
 
 .detail {
@@ -139,12 +138,13 @@ main {
 }
 
 
-.nextButton {
-  width: 8rem;
+.button {
+  width: 6rem;
   height: 2rem;
   border-radius: 5px;
   font-size: 1rem;
-  margin-left: 80%;
   background-color: #4f4e4e;
   color: white;
+  display: flex;
+  justify-content: space-around;
 }

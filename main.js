@@ -33,7 +33,8 @@ function displayPicture() {
       name.className = 'detail';
       nextButton.id = i;
       backButton.id = i;
-      nextButton.className = 'nextButton';
+      nextButton.className = 'button';
+      backButton.className = 'button';
       fullName.id = 'full-name';
       modal.className = 'modal';
       modal.id = i;
@@ -45,7 +46,8 @@ function displayPicture() {
       picture.setAttribute('alt', photosInfo[i].alt)
       fullName.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
       name.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
-      nextButton.textContent = 'Next';
+      backButton.innerHTML = '<ion-icon name="arrow-back"></ion-icon> Back'
+      nextButton.innerHTML  = 'Next <ion-icon name="arrow-forward"></ion-icon>';
 
       for (let key in photosInfo[i]) {
 
