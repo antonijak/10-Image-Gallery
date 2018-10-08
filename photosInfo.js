@@ -46,7 +46,7 @@ const photosInfo = [
     lastName: 'Park',
     title: 'trainee',
     nationality: 'Korean',
-    src: 'hyesoo.jpg',
+    src: 'hyeSoo.jpg',
     alt: 'hyeSoo photo',
     skills: ['JavaScript', 'CSS', 'HTML5'],
     whySofterDeveloper: 'It is amazing that I can build something useful and helpful for people',
