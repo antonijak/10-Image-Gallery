@@ -3,9 +3,7 @@ let main = document.querySelector('main');
 
 function displayPicture() {
   for (i = 0; i < photosInfo.length; i++) {
-
-    if (photosInfo[i].src) {
-
+    if (photosInfo[i].src.length > 0) {
       let picture = document.createElement('img');
       let modal = document.createElement('div');
       let details = document.createElement('div');
@@ -27,14 +25,14 @@ function displayPicture() {
       details.appendChild(noPic)
       details.appendChild(nextButton);
       pictureContainer.className = 'picture-container';
-      
+
       picture.className = 'picture';
       name.className = 'detail';
       nextButton.id = i;
       fullName.id = 'full-name';
 
       modal.className = 'modal';
-      modal.id= i;
+      modal.id = i;
       details.id = 'details';
       bigPicture.id = 'big-picture';
       name.id = 'fullName';
@@ -84,18 +82,39 @@ function displayPicture() {
 
 
         nextButton.addEventListener('click', (e) => {
-          var buttonId = parseInt(e.target.getAttribute('id')) + 1;
-          let buttonIdString  = buttonId.toString();
-          var nextParsonModal = document.getElementById(buttonIdString);
-          nextParsonModal.style.display = 'block';
+
+          let buttonId = parseInt(e.target.getAttribute('id')) + 1;
+
+
+          let buttonIdString = buttonId.toString();
+
+          let x = document.getElementById(buttonIdString);
+
+          console.log(x);
+
+          while (x === null) {
+            buttonId++;
+            
+
+            if (buttonId > photosInfo.length) {
+              buttonId = 0;
+            }
+            buttonIdString = buttonId.toString();
+
+            x = document.getElementById(buttonIdString);
+          }
+          x.style.display = 'block';
+          x.style.top = '0';
+
+
         })
-        
+
 
         iterator++
       }
-     
+
     }
+
   }
 }
 displayPicture();
-
