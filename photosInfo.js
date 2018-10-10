@@ -736,7 +736,7 @@ const photosInfo = [
     lastName: 'Bakos',
     title: 'Trainee',
     nationality: 'Hungarian',
-    src: '',
+    src: 'zsuzsanna.jpg',
     alt: 'Zsuzsanna Bakos',
     skills: ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'AutoCad 3D'],
     whySofterDeveloper: 'I like to create creative design and to challenge myself with new things',

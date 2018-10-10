@@ -65,7 +65,7 @@ main {
 
 }
 
-.modal {
+#modal {
   display: none;
   position: fixed;
   z-index: 4;
@@ -93,42 +93,18 @@ main {
   justify-content: space-between;
 }
 
-.detail {
-
-  margin: 0 auto 1rem;
+#fullName {
+  font-size: 2rem;
   width: 100%;
-  /* border: 1px solid black; */
-  display: flex;
-  justify-content: space-evenly;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  
+  padding: 1rem;
 }
-
-.detail span {
-  text-align: left;
-  width: 60%;
-}
-
-
 
 #big-picture {
   width: 35%;
   height: 80%;
   object-fit: cover;
   border-radius: 5px;
-}
-
-
-#fullName {
-  font-size: 2rem;
-  width: 100%;
-}
-
-#titles {
-  color: gray;
-  width: 30%;
-
+  padding: 1rem;
 }
 
 #just-text {
@@ -137,6 +113,31 @@ main {
   height: 80%;
 }
 
+.detail {
+  margin: 0 auto 1.5rem;
+  width: 100%;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1rem;
+  line-height: 1rem;
+  height: fit-content;
+}
+
+.detail span {
+  text-align: left;
+  width: 65%;
+ 
+}
+
+.detail:last-child{
+  margin: 0;
+}
+
+#titles {
+  color: gray;
+  width: 30%;
+}
 
 .button {
   width: 6rem;
