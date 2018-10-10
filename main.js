@@ -12,7 +12,7 @@ function displayPicture() {
       pictureContainer.appendChild(fullName);
       pictureContainer.className = 'picture-container';
       picture.className = 'picture';
-      fullName.id = 'full-name';
+      fullName.className = 'full-name';
       picture.setAttribute('src', './images/' + element.src);
       picture.setAttribute('alt', element.alt)
       fullName.textContent = element.firstName + ' ' + element.lastName;
@@ -24,32 +24,32 @@ function displayPicture() {
 
 function displayModal(i) {
   let modal = document.createElement('div');
-  let details = document.createElement('div');
-  let noPic = document.createElement('div');
+  let detailsContainer = document.createElement('div');
+  let modalName = document.createElement('div');
+  let modalPicture = document.createElement('img');
+  let modalText= document.createElement('div');
   let nextButton = document.createElement('button');
   let backButton = document.createElement('button');
-  let bigPicture = document.createElement('img');
-  let name = document.createElement('div');
   let iterator = 0;
   let titles = ['', '', 'Title: ', 'Nationality: ', '', '', 'Skills: ', 'Why software development: ', 'Long term vision:', 'What motivates me: ', 'Favorite quote: ', 'Joined on: '];
 
   document.body.appendChild(modal);
-  modal.appendChild(details);
-  details.appendChild(name);
-  details.appendChild(bigPicture)
-  details.appendChild(noPic)
-  details.appendChild(backButton);
-  details.appendChild(nextButton);
-  name.className = 'detail';
-  nextButton.className = 'button';
-  backButton.className = 'button';
-  modal.id = 'modal';
-  modal.className = 'a';
-  details.id = 'details';
-  bigPicture.id = 'big-picture';
-  name.id = 'fullName';
-  noPic.id = 'just-text';
-  name.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
+  modal.appendChild(detailsContainer);
+  detailsContainer.appendChild(modalName);
+  detailsContainer.appendChild(modalPicture);
+  detailsContainer.appendChild(modalText);
+  detailsContainer.appendChild(backButton);
+  detailsContainer.appendChild(nextButton);
+  
+  modal.className = 'modal';
+  detailsContainer.className= 'details-container';
+  modalName.className = 'modal-name';
+  modalPicture.className = 'modal-picture';
+  modalText.className = 'modal-text';
+  backButton.className = 'navigationButton';
+  nextButton.className = 'navigationButton';
+
+  modalName.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
   backButton.innerHTML = '<ion-icon name="arrow-back"></ion-icon> Back'
   nextButton.innerHTML = 'Next <ion-icon name="arrow-forward"></ion-icon>';
 
@@ -59,35 +59,34 @@ function displayModal(i) {
       
       if (key !== 'firstName' && key !== 'lastName' && key !== 'alt') {
 
-        let div = document.createElement('div');
-        noPic.appendChild(div);
-        div.id = key;
-        div.className = 'detail';
-        let title = document.createElement('span');
-        let content = document.createElement('span');
-        div.appendChild(title);
-        div.appendChild(content);
-        title.textContent = titles[iterator];
-        title.id = 'titles';
+        let detail = document.createElement('div');
+        let detailTitle = document.createElement('span');
+        let detailContent = document.createElement('span');
+
+        modalText.appendChild(detail);
+        detail.appendChild(detailTitle);
+        detail.appendChild(detailContent);
+        
+        detail.className = key;
+        detail.className += ' detail';
+        detailTitle.className = 'titles';
+        detailTitle.textContent = titles[iterator];
 
         if (key == 'skills') {
-          content.textContent = photosInfo[i][key].join(', ');
+          detailContent.textContent = photosInfo[i][key].join(', ');
         } else if (key == 'src') {
-          bigPicture.setAttribute('src', './images/' + photosInfo[i][key]);
-          bigPicture.setAttribute('alt', photosInfo[i][key])
-          noPic.removeChild(div)
+          modalPicture.setAttribute('src', './images/' + photosInfo[i][key]);
+          modalPicture.setAttribute('alt', photosInfo[i][key])
+          modalText.removeChild(detail);
         } else {
-          content.textContent = photosInfo[i][key];
+          detailContent.textContent = photosInfo[i][key];
         }
-
-        
-        modal.style.display = 'block'
-       
+        modal.style.display = 'block';
       }
     }
     iterator++
   }
-  modal.addEventListener('click', () => modal.style.display = 'none')
+  modal.addEventListener('click', () => modal.style.display = 'none');
   nextButton.addEventListener('click', () => nextM(i));
   backButton.addEventListener('click', () => backM(i));
 }
