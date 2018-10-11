@@ -42,6 +42,8 @@ function displayModal(i) {
   detailsContainer.appendChild(nextButton);
   
   modal.className = 'modal';
+  easeIn(modal)
+  easeIn(detailsContainer)
   detailsContainer.className= 'details-container';
   modalName.className = 'modal-name';
   modalPicture.className = 'modal-picture';
@@ -66,12 +68,12 @@ function displayModal(i) {
         modalText.appendChild(detail);
         detail.appendChild(detailTitle);
         detail.appendChild(detailContent);
-        
         detail.className = key;
         detail.className += ' detail';
         detailTitle.className = 'titles';
+        detailContent.className = 'content';
         detailTitle.textContent = titles[iterator];
-
+        
         if (key == 'skills') {
           detailContent.textContent = photosInfo[i][key].join(', ');
         } else if (key == 'src') {
@@ -81,14 +83,23 @@ function displayModal(i) {
         } else {
           detailContent.textContent = photosInfo[i][key];
         }
-        modal.style.display = 'block';
+        
+        
       }
     }
     iterator++
   }
   modal.addEventListener('click', () => modal.style.display = 'none');
-  nextButton.addEventListener('click', () => nextM(i));
+  nextButton.addEventListener('click', () => {
+    console.log('i am showing');
+    modal.style.display = 'none';
+    
+    
+    nextM(i)});
+    modal.className = 'modal';
   backButton.addEventListener('click', () => backM(i));
+  
+  
 }
 
 function nextM(i) {
@@ -117,3 +128,7 @@ function backM(i) {
 }
 
 displayPicture();
+
+let easeIn = (element) =>{
+  setTimeout(()=>{element.classList.toggle('active')}, 100)
+}
