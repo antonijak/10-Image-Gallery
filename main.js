@@ -90,13 +90,7 @@ function displayModal(i) {
     iterator++
   }
   modal.addEventListener('click', () => modal.style.display = 'none');
-  nextButton.addEventListener('click', () => {
-    console.log('i am showing');
-    modal.style.display = 'none';
-    
-    
-    nextM(i)});
-    modal.className = 'modal';
+  nextButton.addEventListener('click', () => nextM(i));
   backButton.addEventListener('click', () => backM(i));
   
   
