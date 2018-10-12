@@ -18,6 +18,7 @@ p {
   width:  90%;
   margin: 1rem auto;
   text-align: center;
+  font-family: 'Chivo', sans-serif;
 }
 
 #nationalities {
@@ -29,6 +30,7 @@ p {
 main {
   width: 95%;
   margin: auto;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -179,8 +181,16 @@ main {
  border-bottom: transparent;
  color: white;
  border-radius: 0;
+ outline: none;
+}
+
+#nationid:hover{
+  color: rgb(199, 199, 199);
 }
 
 .working {
   color: rgba(255, 255, 255);
+  font-family: 'Chivo', sans-serif;
+ 
 }
+
