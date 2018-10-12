@@ -32,8 +32,6 @@ function displayPicture() {
   })
 }
 
-
-
 function displayModal(i) {
   let modal = document.createElement('div');
   let detailsContainer = document.createElement('div');
@@ -64,8 +62,8 @@ function displayModal(i) {
   nextButton.className = 'navigationButton';
 
   modalName.textContent = photosInfo[i].firstName + ' ' + photosInfo[i].lastName;
-  backButton.innerHTML = '<ion-icon name="arrow-back"></ion-icon> Back'
-  nextButton.innerHTML = 'Next <ion-icon name="arrow-forward"></ion-icon>';
+  backButton.innerHTML = '<ion-icon name="arrow-back"></ion-icon> <span>Back</span>'
+  nextButton.innerHTML = '<span>Next</span> <ion-icon name="arrow-forward"></ion-icon>';
 
   for (let key in photosInfo[i]) {
 
