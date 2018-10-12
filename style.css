@@ -5,12 +5,25 @@
 body {
   font-family: 'Roboto Mono', monospace;
   background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 h1 {
   text-align: center;
   margin: 2rem;
   color: white;
+}
+
+p {
+  width:  90%;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+#nationalities {
+  width:  90%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 main {
@@ -27,7 +40,7 @@ main {
 }
 
 .picture-container {
-  height: 20rem;
+  height: 20.2rem;
   margin: .7rem .5rem;
   border-radius: 5px; 
 }
@@ -42,7 +55,7 @@ main {
 .picture-container::after {
   display: block;
   position: relative;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #000 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #000 120%);
   margin-top: -3.2rem;
   height: 3rem;
   width: 100%;
@@ -93,6 +106,7 @@ main {
   overflow: unset;
   color: black;
   justify-content: space-between;
+  font-family: 'Chivo', sans-serif;
 }
 
 .details-container.active {
@@ -156,4 +170,17 @@ main {
   color: white;
   display: flex;
   justify-content: space-around;
+}
+
+#nationid {
+ background-color: black;
+ border: 1px solid white;
+ border-top: transparent;
+ border-bottom: transparent;
+ color: white;
+ border-radius: 0;
+}
+
+.working {
+  color: rgba(255, 255, 255);
 }

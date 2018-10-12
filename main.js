@@ -1,33 +1,45 @@
 let pictureContainer = document.querySelector('#displayed-picture');
 let main = document.querySelector('main');
+let nationalities = new Set()
 
 function displayPicture() {
+
   photosInfo.forEach((element, index) => {
     if (element.src !== '') {
       let picture = document.createElement('img');
       let fullName = document.createElement('div');
       let pictureContainer = document.createElement('div');
+      let nation = document.querySelector('#nation');
+
       main.appendChild(pictureContainer);
       pictureContainer.appendChild(picture);
       pictureContainer.appendChild(fullName);
       pictureContainer.className = 'picture-container';
+      pictureContainer.id = index;
       picture.className = 'picture';
       fullName.className = 'full-name';
       picture.setAttribute('src', './images/' + element.src);
       picture.setAttribute('alt', element.alt)
       fullName.textContent = element.firstName + ' ' + element.lastName;
+      if (element.nationality) {
+        nationalities.add(element.nationality);
+        let numOfNation = nationalities.size;
+        nation.textContent = numOfNation;
+      }
 
       pictureContainer.addEventListener('click', () => displayModal(index));
     }
   })
 }
 
+
+
 function displayModal(i) {
   let modal = document.createElement('div');
   let detailsContainer = document.createElement('div');
   let modalName = document.createElement('div');
   let modalPicture = document.createElement('img');
-  let modalText= document.createElement('div');
+  let modalText = document.createElement('div');
   let nextButton = document.createElement('button');
   let backButton = document.createElement('button');
   let iterator = 0;
@@ -40,11 +52,11 @@ function displayModal(i) {
   detailsContainer.appendChild(modalText);
   detailsContainer.appendChild(backButton);
   detailsContainer.appendChild(nextButton);
-  
+
   modal.className = 'modal';
   easeIn(modal)
   easeIn(detailsContainer)
-  detailsContainer.className= 'details-container';
+  detailsContainer.className = 'details-container';
   modalName.className = 'modal-name';
   modalPicture.className = 'modal-picture';
   modalText.className = 'modal-text';
@@ -58,7 +70,7 @@ function displayModal(i) {
   for (let key in photosInfo[i]) {
 
     if (photosInfo[i][key] && photosInfo[i][key] !== ['']) {
-      
+
       if (key !== 'firstName' && key !== 'lastName' && key !== 'alt') {
 
         let detail = document.createElement('div');
@@ -73,7 +85,7 @@ function displayModal(i) {
         detailTitle.className = 'titles';
         detailContent.className = 'content';
         detailTitle.textContent = titles[iterator];
-        
+
         if (key == 'skills') {
           detailContent.textContent = photosInfo[i][key].join(', ');
         } else if (key == 'src') {
@@ -83,8 +95,6 @@ function displayModal(i) {
         } else {
           detailContent.textContent = photosInfo[i][key];
         }
-        
-        
       }
     }
     iterator++
@@ -92,8 +102,6 @@ function displayModal(i) {
   modal.addEventListener('click', () => modal.style.display = 'none');
   nextButton.addEventListener('click', () => nextM(i));
   backButton.addEventListener('click', () => backM(i));
-  
-  
 }
 
 function nextM(i) {
@@ -123,6 +131,68 @@ function backM(i) {
 
 displayPicture();
 
-let easeIn = (element) =>{
-  setTimeout(()=>{element.classList.toggle('active')}, 100)
+let easeIn = (element) => {
+  setTimeout(() => {
+    element.classList.toggle('active')
+  }, 100)
+}
+
+
+
+let nationDiv = document.querySelector('#nationalities');
+
+let nat = [];
+nationalities.forEach(n => {
+  if (typeof n === "object") {
+      nat.push(n[0])
+      nat.push(n[1])
+  } else {
+      nat.push(n)
+  }
+})
+
+nat.sort((a, b) => a.localeCompare(b))
+let x = new Set;
+
+nat.forEach(n => x.add(n))
+
+x.forEach(n => {
+  let button = document.createElement('button');
+  button.id = 'nationid';
+  button.textContent = n;
+  nationDiv.appendChild(button)
+})
+
+let buttons = document.querySelectorAll('#nationid');
+
+photosInfo.forEach((el, index) => {
+  document.querySelectorAll('.picture-container').forEach(el => el.style.border = 'none')
+  let id2 = index.toString();
+
+  buttons.forEach(b => b.addEventListener('click', () => addRed(b, el, id2)))
+})
+
+function addRed(button, object, id2) {
+  if (button.textContent == object.nationality || button.textContent == object.nationality[0]|| button.textContent == object.nationality[1]) {
+    let pic = document.getElementById(id2);
+    console.log(id2);
+    
+    pic.style.border = '1px solid red';
+    button.style.color = 'gray';
+    button.removeEventListener('click', () => addRed(button, object, id2));
+    button.addEventListener('click', () => removeRed(button, object, id2));
+  } else {
+    console.log('else' + id2);
+    
+  }
+}
+
+function removeRed(button, object, id2) {
+  if (button.textContent === object.nationality || button.textContent === object.nationality[0]|| button.textContent === object.nationality[1]) {
+    let bla = document.getElementById(id2);
+    bla.style.border = 'none';
+    button.style.color = 'white';
+  }
+  button.removeEventListener('click', () => removeRed(button, object, id2))
+  button.addEventListener('click', () => addRed(button, object, id2))
 }
