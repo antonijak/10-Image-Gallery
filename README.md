@@ -1,4 +1,4 @@
-Alt-# 10-Image-Gallery
+# Integrify Image Gallery
 
 Galery of student pictures with their data
 
