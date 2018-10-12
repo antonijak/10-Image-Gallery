@@ -169,25 +169,25 @@ photosInfo.forEach((el, index) => {
   document.querySelectorAll('.picture-container').forEach(el => el.style.border = 'none')
   let id2 = index.toString();
 
-  buttons.forEach(b => b.addEventListener('click', () => addRed(b, el, id2)))
+  buttons.forEach(b => b.addEventListener('click', () => addBorder(b, el, id2)))
 })
 
-function addRed(button, object, id) {
+function addBorder(button, object, id) {
   if (object.src && button.textContent == object.nationality || button.textContent == object.nationality[0]|| button.textContent == object.nationality[1]) {
     let pic = document.getElementById(id);
-    pic.style.border = '1px solid red';
-    button.style.color = 'gray';
-    button.removeEventListener('click', () => addRed(button, object, id));
-    button.addEventListener('click', () => removeRed(button, object, id));
+    pic.style.border = '2px solid white';
+    button.style.backgroundColor = 'rgb(26, 26, 26)';
+    button.removeEventListener('click', () => addBorder(button, object, id));
+    button.addEventListener('click', () => removeBorder(button, object, id));
   } 
 }
 
-function removeRed(button, object, id) {
+function removeBorder(button, object, id) {
   if (button.textContent === object.nationality || button.textContent === object.nationality[0]|| button.textContent === object.nationality[1]) {
     let pic= document.getElementById(id);
     pic.style.border = 'none';
     button.style.color = 'white';
   }
-  button.removeEventListener('click', () => removeRed(button, object, id))
-  button.addEventListener('click', () => addRed(button, object, id))
+  button.removeEventListener('click', () => removeBorder(button, object, id))
+  button.addEventListener('click', () => addBorder(button, object, id))
 }

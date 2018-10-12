@@ -16,7 +16,7 @@ h1 {
 
 p {
   width:  90%;
-  margin: 1rem auto;
+  margin: 1.5rem auto;
   text-align: center;
   font-family: 'Chivo', sans-serif;
 }
@@ -25,7 +25,31 @@ p {
   width:  90%;
   margin: 0 auto;
   text-align: center;
+  
 }
+
+#nationid {
+  background-color: black;
+  border: 1px solid rgb(26, 26, 26);
+  color: white;
+  border-radius: 0;
+  outline: none;
+  font-size: .8rem;
+  padding: .5rem 1rem;
+  margin: .2rem 0;
+ }
+ 
+ #nationid:hover{
+   color: rgba(199, 199, 199, 0.249);
+   
+ }
+ 
+ .working {
+   color: rgba(255, 255, 255);
+   font-family: 'Chivo', sans-serif;
+  
+ }
+ 
 
 main {
   width: 95%;
@@ -42,29 +66,30 @@ main {
 }
 
 .picture-container {
-  height: 20.2rem;
+  width: 15rem;
+  height: 20rem;
   margin: .7rem .5rem;
   border-radius: 5px; 
+  overflow: hidden;
+  border: 2px solid black;
 }
 
 .picture {
   width: 15rem;
   height: 20rem;
   object-fit: cover;
-  border-radius: 5px;
+  margin: auto;
 }
 
 .picture-container::after {
   display: block;
   position: relative;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #000 120%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #000 100%);
   margin-top: -3.2rem;
-  height: 3rem;
+  height: 4rem;
   width: 100%;
   content: '';
   color: #4f4e4e;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
 
 .full-name {
@@ -72,7 +97,7 @@ main {
   width: 15rem;
   height: 1.5rem;
   line-height: 1.5rem;
-  margin-top: -2rem;
+  margin-top: -2.5rem;
   z-index: 2;
   position: absolute;
   text-align: center;
@@ -174,23 +199,5 @@ main {
   justify-content: space-around;
 }
 
-#nationid {
- background-color: black;
- border: 1px solid white;
- border-top: transparent;
- border-bottom: transparent;
- color: white;
- border-radius: 0;
- outline: none;
-}
 
-#nationid:hover{
-  color: rgb(199, 199, 199);
-}
-
-.working {
-  color: rgba(255, 255, 255);
-  font-family: 'Chivo', sans-serif;
- 
-}
 
