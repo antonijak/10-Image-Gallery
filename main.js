@@ -2,9 +2,9 @@ let pictureContainer = document.querySelector('#displayed-picture');
 let main = document.querySelector('main');
 let nationalities = new Set()
 
-function displayPicture() {
+function displayPicture(array) {
 
-  photosInfo.forEach((element, index) => {
+  array.forEach((element, index) => {
     if (element.src !== '') {
       let picture = document.createElement('img');
       let fullName = document.createElement('div');
@@ -127,65 +127,74 @@ function backM(i) {
   }
 }
 
-displayPicture();
+displayPicture(photosInfo);
 
 let easeIn = (element) => {
   setTimeout(() => {
     element.classList.toggle('active')
   }, 100)
 }
+let selectedPeople = [];
 
+function sortPeople() {
+  selectedPeople = [];
+  let nationDiv = document.querySelector('#nationalities');
 
-
-let nationDiv = document.querySelector('#nationalities');
-
-let nat = [];
-nationalities.forEach(n => {
-  if (typeof n === "object") {
+  let nat = [];
+  nationalities.forEach(n => {
+    if (typeof n === "object") {
       nat.push(n[0])
       nat.push(n[1])
-  } else {
+    } else {
       nat.push(n)
-  }
-})
+    }
+  })
 
-nat.sort((a, b) => a.localeCompare(b))
-let x = new Set;
+  nat.sort((a, b) => a.localeCompare(b))
+  let x = new Set;
 
-nat.forEach(n => x.add(n))
+  nat.forEach(n => x.add(n))
 
-x.forEach(n => {
-  let button = document.createElement('button');
-  button.id = 'nationid';
-  button.textContent = n;
-  nationDiv.appendChild(button)
-})
+  x.forEach(n => {
+    let button = document.createElement('button');
+    button.id = 'nationid';
+    button.textContent = n;
+    nationDiv.appendChild(button)
+  })
 
-let buttons = document.querySelectorAll('#nationid');
-
-photosInfo.forEach((el, index) => {
-  document.querySelectorAll('.picture-container').forEach(el => el.style.border = 'none')
-  let id2 = index.toString();
-
-  buttons.forEach(b => b.addEventListener('click', () => addBorder(b, el, id2)))
-})
-
-function addBorder(button, object, id) {
-  if (object.src && button.textContent == object.nationality || button.textContent == object.nationality[0]|| button.textContent == object.nationality[1]) {
-    let pic = document.getElementById(id);
-    pic.style.border = '2px solid white';
-    button.style.backgroundColor = 'rgb(26, 26, 26)';
-    button.removeEventListener('click', () => addBorder(button, object, id));
-    button.addEventListener('click', () => removeBorder(button, object, id));
-  } 
+  let buttons = document.querySelectorAll('#nationid');
+  if(selectedPeople.length > 0) {
+    selectedPeople.pop();
+}
+  photosInfo.forEach((el, index) => {
+    document.querySelectorAll('.picture-container').forEach(el => el.style.border = 'none')
+    let id2 = index.toString();
+    
+    buttons.forEach(b => b.addEventListener('click', () => addBorder(b, el)))
+  })
 }
 
-function removeBorder(button, object, id) {
-  if (button.textContent === object.nationality || button.textContent === object.nationality[0]|| button.textContent === object.nationality[1]) {
-    let pic= document.getElementById(id);
-    pic.style.border = 'none';
-    button.style.color = 'white';
+sortPeople();
+
+function addBorder(button, object) {
+  console.log('clicked');
+  
+  main.innerHTML = '';
+  if (object.src && button.textContent == object.nationality || button.textContent == object.nationality[0] || button.textContent == object.nationality[1]) {
+    selectedPeople.push(object)
   }
-  button.removeEventListener('click', () => removeBorder(button, object, id))
-  button.addEventListener('click', () => addBorder(button, object, id))
+  console.log(selectedPeople);
+
+  displayPicture(selectedPeople)
+  button.removeEventListener('click', () => addBorder(button, object));
+  button.addEventListener('click', () => removeBorder(button, object));
+}
+
+function removeBorder(button, object) {
+  
+  main.innerHTML = '';
+  selectedPeople = [];
+  displayPicture(photosInfo);
+  button.removeEventListener('click', () => removeBorder(button, object));
+  button.addEventListener('click',() => addBorder(button, object));
 }
