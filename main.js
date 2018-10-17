@@ -1,6 +1,7 @@
 let pictureContainer = document.querySelector('#displayed-picture');
 let main = document.querySelector('main');
-let nationalities = new Set()
+let nationalitiesSet = new Set()
+let nation = document.querySelector('#nation');
 
 function displayPicture(array) {
 
@@ -9,7 +10,7 @@ function displayPicture(array) {
       let picture = document.createElement('img');
       let fullName = document.createElement('div');
       let pictureContainer = document.createElement('div');
-      let nation = document.querySelector('#nation');
+      
 
       main.appendChild(pictureContainer);
       pictureContainer.appendChild(picture);
@@ -22,14 +23,15 @@ function displayPicture(array) {
       picture.setAttribute('alt', element.alt)
       fullName.textContent = element.firstName + ' ' + element.lastName;
       if (element.nationality) {
-        nationalities.add(element.nationality);
-        let numOfNation = nationalities.size;
-        nation.textContent = numOfNation;
+        nationalitiesSet.add(element.nationality);
+        
+        
       }
 
       pictureContainer.addEventListener('click', () => displayModal(index));
     }
   })
+  nation.textContent = nationalitiesSet.size;
 }
 
 function displayModal(i) {
@@ -98,11 +100,11 @@ function displayModal(i) {
     iterator++
   }
   modal.addEventListener('click', () => modal.style.display = 'none');
-  nextButton.addEventListener('click', () => nextM(i));
-  backButton.addEventListener('click', () => backM(i));
+  nextButton.addEventListener('click', () => showNextPersonModal(i));
+  backButton.addEventListener('click', () => showBackPersonModal(i));
 }
 
-function nextM(i) {
+function showNextPersonModal(i) {
   if (i == photosInfo.length - 1) {
     displayModal(0)
   } else {
@@ -114,7 +116,7 @@ function nextM(i) {
   }
 }
 
-function backM(i) {
+function showBackPersonModal(i) {
   if (i == 0) {
     i = photosInfo.length - 1
     displayModal(i)
@@ -127,13 +129,14 @@ function backM(i) {
   }
 }
 
-displayPicture(photosInfo);
-
-let easeIn = (element) => {
+function easeIn(element){
   setTimeout(() => {
     element.classList.toggle('active')
   }, 100)
 }
+
+displayPicture(photosInfo);
+
 let selectedPeople = [];
 
 function sortPeople() {
@@ -141,7 +144,7 @@ function sortPeople() {
   let nationDiv = document.querySelector('#nationalities');
 
   let nat = [];
-  nationalities.forEach(n => {
+  nationalitiesSet.forEach(n => {
     if (typeof n === "object") {
       nat.push(n[0])
       nat.push(n[1])
@@ -170,13 +173,13 @@ function sortPeople() {
     document.querySelectorAll('.picture-container').forEach(el => el.style.border = 'none')
     let id2 = index.toString();
     
-    buttons.forEach(b => b.addEventListener('click', () => addBorder(b, el)))
+    buttons.forEach(b => b.addEventListener('click', () => showSelected(b, el)))
   })
 }
 
 sortPeople();
 
-function addBorder(button, object) {
+function showSelected(button, object) {
   console.log('clicked');
   
   main.innerHTML = '';
@@ -186,15 +189,15 @@ function addBorder(button, object) {
   console.log(selectedPeople);
 
   displayPicture(selectedPeople)
-  button.removeEventListener('click', () => addBorder(button, object));
-  button.addEventListener('click', () => removeBorder(button, object));
+  button.removeEventListener('click', () => showSelected(button, object));
+  button.addEventListener('click', () => hideSelected(button, object));
 }
 
-function removeBorder(button, object) {
+function hideSelected(button, object) {
   
   main.innerHTML = '';
   selectedPeople = [];
   displayPicture(photosInfo);
-  button.removeEventListener('click', () => removeBorder(button, object));
-  button.addEventListener('click',() => addBorder(button, object));
+  button.removeEventListener('click', () => hideSelected(button, object));
+  button.addEventListener('click',() => showSelected(button, object));
 }
