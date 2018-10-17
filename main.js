@@ -1,7 +1,8 @@
 let pictureContainer = document.querySelector('#displayed-picture');
 let main = document.querySelector('main');
 let nationalitiesSet = new Set()
-let nation = document.querySelector('#nation');
+let nationNumber = document.querySelector('#nation');
+let nationsContainer = document.querySelector('#nationalities');
 
 function displayPicture(array) {
 
@@ -10,7 +11,6 @@ function displayPicture(array) {
       let picture = document.createElement('img');
       let fullName = document.createElement('div');
       let pictureContainer = document.createElement('div');
-      
 
       main.appendChild(pictureContainer);
       pictureContainer.appendChild(picture);
@@ -22,16 +22,20 @@ function displayPicture(array) {
       picture.setAttribute('src', './images/' + element.src);
       picture.setAttribute('alt', element.alt)
       fullName.textContent = element.firstName + ' ' + element.lastName;
-      if (element.nationality) {
-        nationalitiesSet.add(element.nationality);
-        
+
+      if (element.nationality) { 
+        if (typeof element.nationality=== "object") {
+          nationalitiesSet.add(element.nationality[0])
+          nationalitiesSet.add(element.nationality[1])
+        } else {
+          nationalitiesSet.add(element.nationality)
+        }
         
       }
-
       pictureContainer.addEventListener('click', () => displayModal(index));
     }
   })
-  nation.textContent = nationalitiesSet.size;
+  nationNumber.textContent = nationalitiesSet.size;
 }
 
 function displayModal(i) {
@@ -129,75 +133,59 @@ function showBackPersonModal(i) {
   }
 }
 
-function easeIn(element){
+function easeIn(element) {
   setTimeout(() => {
     element.classList.toggle('active')
   }, 100)
 }
 
-displayPicture(photosInfo);
-
-let selectedPeople = [];
-
-function sortPeople() {
-  selectedPeople = [];
-  let nationDiv = document.querySelector('#nationalities');
-
-  let nat = [];
-  nationalitiesSet.forEach(n => {
-    if (typeof n === "object") {
-      nat.push(n[0])
-      nat.push(n[1])
-    } else {
-      nat.push(n)
-    }
-  })
-
-  nat.sort((a, b) => a.localeCompare(b))
-  let x = new Set;
-
-  nat.forEach(n => x.add(n))
-
-  x.forEach(n => {
+function createNationalityButton() {
+  let nationalitiesArray = [];
+  console.log(nationalitiesSet);
+  
+  nationalitiesSet.forEach(ntnl => nationalitiesArray.push(ntnl))
+  nationalitiesArray.sort((a, b) => a.localeCompare(b))
+  nationalitiesArray.forEach((ntnl) => {
     let button = document.createElement('button');
     button.id = 'nationid';
-    button.textContent = n;
-    nationDiv.appendChild(button)
-  })
-
-  let buttons = document.querySelectorAll('#nationid');
-  if(selectedPeople.length > 0) {
-    selectedPeople.pop();
-}
-  photosInfo.forEach((el, index) => {
-    document.querySelectorAll('.picture-container').forEach(el => el.style.border = 'none')
-    let id2 = index.toString();
-    
-    buttons.forEach(b => b.addEventListener('click', () => showSelected(b, el)))
+    button.setAttribute('type', 'radio');
+    button.setAttribute('name', '0');
+    button.textContent = ntnl;
+    nationsContainer.appendChild(button)
+    button.addEventListener('click', () => showSelected(button))
   })
 }
 
-sortPeople();
-
-function showSelected(button, object) {
-  console.log('clicked');
-  
+function showSelected(button) {
   main.innerHTML = '';
-  if (object.src && button.textContent == object.nationality || button.textContent == object.nationality[0] || button.textContent == object.nationality[1]) {
-    selectedPeople.push(object)
-  }
-  console.log(selectedPeople);
-
+  let allButtons = document.querySelectorAll('#nationid');
+  allButtons.forEach(b => b.style.color = 'white')
+  button.style.color = 'gray';
+  button.setAttribute('name', '1');
+  let selectedPeople = [];
+  for (object of photosInfo){
+    if (object.src){
+      if (button.textContent == object.nationality || button.textContent == object.nationality[0] || button.textContent == object.nationality[1]) 
+      {selectedPeople.push(object)
+    }}
+  } 
   displayPicture(selectedPeople)
-  button.removeEventListener('click', () => showSelected(button, object));
-  button.addEventListener('click', () => hideSelected(button, object));
+  button.removeEventListener('click', () => showSelected(button));
+  button.addEventListener('click', () => hideSelected(button));
 }
 
-function hideSelected(button, object) {
-  
+function hideSelected(button) {
+
   main.innerHTML = '';
+  button.style.color = 'white';
   selectedPeople = [];
   displayPicture(photosInfo);
-  button.removeEventListener('click', () => hideSelected(button, object));
-  button.addEventListener('click',() => showSelected(button, object));
+  button.removeEventListener('click', () => hideSelected(button));
+  button.addEventListener('click', () => showSelected(button));
 }
+
+
+
+
+displayPicture(photosInfo);
+createNationalityButton()

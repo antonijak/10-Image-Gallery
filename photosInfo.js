@@ -201,7 +201,7 @@ const photosInfo = [{
     nationality: 'Finnish',
     src: 'yanze.jpg',
     alt: '',
-    skills: [0],
+    skills: [''],
     whySofterDeveloper: 'I don’t know',
     longTermVision: 'I don’t know',
     motivatesMe: 'Tea',
