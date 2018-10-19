@@ -24,10 +24,12 @@ p {
 #nationalities {
   width:  90%;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
 }
 
-#nationid {
+.nationButton {
   background-color: black;
   border: 1px solid rgb(26, 26, 26);
   color: white;
@@ -36,20 +38,24 @@ p {
   font-size: .8rem;
   padding: .5rem 1rem;
   margin: .2rem 0;
+  flex-grow: 1; 
+  text-align: center;
  }
  
- #nationid:hover{
-   color: rgba(199, 199, 199, 0.249);
-   
+ .nationid:hover{
+   color: rgba(199, 199, 199, 0.249); 
  }
+
+ .nationid:checked {
+   color: red;
+ }
+
  
  .working {
    color: rgba(255, 255, 255);
    font-family: 'Chivo', sans-serif;
-  
  }
  
-
 main {
   width: 95%;
   margin: auto;

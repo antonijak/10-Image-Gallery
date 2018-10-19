@@ -141,27 +141,28 @@ function easeIn(element) {
 
 function createNationalityButton() {
   let nationalitiesArray = [];
-  console.log(nationalitiesSet);
-  
+
   nationalitiesSet.forEach(ntnl => nationalitiesArray.push(ntnl))
   nationalitiesArray.sort((a, b) => a.localeCompare(b))
+  nationalitiesArray.push('-Show All-')
   nationalitiesArray.forEach((ntnl) => {
     let button = document.createElement('button');
-    button.id = 'nationid';
-    button.setAttribute('type', 'radio');
-    button.setAttribute('name', '0');
+
+    button.className = 'nationButton';
+    button.id = ntnl;
     button.textContent = ntnl;
     nationsContainer.appendChild(button)
     button.addEventListener('click', () => showSelected(button))
   })
+  let showAll = document.getElementById('-Show All-')
+  showAll.addEventListener('click', () => displayPicture(photosInfo));
+  showAll.style.backgroundColor = 'gray';
+  
+
 }
 
 function showSelected(button) {
   main.innerHTML = '';
-  let allButtons = document.querySelectorAll('#nationid');
-  allButtons.forEach(b => b.style.color = 'white')
-  button.style.color = 'gray';
-  button.setAttribute('name', '1');
   let selectedPeople = [];
   for (object of photosInfo){
     if (object.src){
@@ -170,22 +171,7 @@ function showSelected(button) {
     }}
   } 
   displayPicture(selectedPeople)
-  button.removeEventListener('click', () => showSelected(button));
-  button.addEventListener('click', () => hideSelected(button));
 }
-
-function hideSelected(button) {
-
-  main.innerHTML = '';
-  button.style.color = 'white';
-  selectedPeople = [];
-  displayPicture(photosInfo);
-  button.removeEventListener('click', () => hideSelected(button));
-  button.addEventListener('click', () => showSelected(button));
-}
-
-
-
 
 displayPicture(photosInfo);
 createNationalityButton()
