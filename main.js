@@ -39,6 +39,8 @@ function displayPicture(array) {
 }
 
 function displayModal(i) {
+  console.log(i);
+  
   let modal = document.createElement('div');
   let detailsContainer = document.createElement('div');
   let modalName = document.createElement('div');
@@ -165,11 +167,20 @@ function showSelected(button) {
   main.innerHTML = '';
   let selectedPeople = [];
   for (object of photosInfo){
+    console.log(object);
+    
     if (object.src){
-      if (button.textContent == object.nationality || button.textContent == object.nationality[0] || button.textContent == object.nationality[1]) 
-      {selectedPeople.push(object)
-    }}
+      if (button.textContent == object.nationality || button.textContent == object.nationality[0] || button.textContent == object.nationality[1]) {
+        selectedPeople.push(object)
+    } else {
+      selectedPeople.push({src: ''})
+    }
+  } else {
+      selectedPeople.push({src: ''})
+    }
+   
   } 
+  console.log(selectedPeople);
   displayPicture(selectedPeople)
 }
 
