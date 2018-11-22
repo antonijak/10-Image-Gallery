@@ -60,8 +60,8 @@ function displayModal(i) {
   detailsContainer.appendChild(nextButton);
 
   modal.className = 'modal';
-  easeIn(modal)
-  easeIn(detailsContainer)
+  easeIn(modal);
+  easeIn(detailsContainer);
   detailsContainer.className = 'details-container';
   modalName.className = 'modal-name';
   modalPicture.className = 'modal-picture';
@@ -167,8 +167,7 @@ function showSelected(button) {
   main.innerHTML = '';
   let selectedPeople = [];
   for (object of photosInfo){
-    console.log(object);
-    
+   
     if (object.src){
       if (button.textContent == object.nationality || button.textContent == object.nationality[0] || button.textContent == object.nationality[1]) {
         selectedPeople.push(object)
@@ -180,8 +179,8 @@ function showSelected(button) {
     }
    
   } 
-  console.log(selectedPeople);
-  displayPicture(selectedPeople)
+  displayPicture(selectedPeople);
+
 }
 
 displayPicture(photosInfo);
