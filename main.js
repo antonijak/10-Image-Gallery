@@ -39,7 +39,6 @@ function displayPicture(array) {
 }
 
 function displayModal(i) {
-  console.log(i);
   
   let modal = document.createElement('div');
   let detailsContainer = document.createElement('div');
