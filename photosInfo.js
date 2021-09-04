@@ -125,20 +125,6 @@ const photosInfo = [{
     joinedOn: '01.08.2018.'
   },
   {
-    firstName: 'Elyas ',
-    lastName: 'Addawe',
-    title: 'Trainee',
-    nationality: 'Finnish',
-    src: 'elyas.jpg',
-    alt: 'my profile picture',
-    skills: ['HTML', 'CSS', 'Javascript'],
-    whySofterDeveloper: 'I always wanted to create something  ',
-    longTermVision: 'Mix business with web developer skills',
-    motivatesMe: '',
-    favoriteQuote: `But it ain’t how hard you hit,it’s about how hard you can get hit and still keep moving forward `,
-    joinedOn: '1/august/2018'
-  },
-  {
     firstName: 'yazan',
     lastName: 'alhalabi',
     title: 'Trainee',
